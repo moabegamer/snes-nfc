@@ -280,6 +280,61 @@ EJS_controlScheme = "snes";
    </script>
 
 <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
+    <script>
+    function enviarComando(indice, pressionado) {
+        if (
+            window.EJS_emulator &&
+            EJS_emulator.gameManager
+        ) {
+            EJS_emulator.gameManager.simulateInput(
+                0,
+                indice,
+                pressionado ? 1 : 0
+            );
+        }
+    }
+
+    function configurarBotao(id, indice) {
+        const botao = document.getElementById(id);
+
+        if (!botao) return;
+
+        botao.addEventListener("pointerdown", function (e) {
+            e.preventDefault();
+            enviarComando(indice, true);
+        });
+
+        botao.addEventListener("pointerup", function (e) {
+            e.preventDefault();
+            enviarComando(indice, false);
+        });
+
+        botao.addEventListener("pointercancel", function () {
+            enviarComando(indice, false);
+        });
+
+        botao.addEventListener("pointerleave", function () {
+            enviarComando(indice, false);
+        });
+    }
+
+    configurarBotao("btn-up", 4);
+    configurarBotao("btn-down", 5);
+    configurarBotao("btn-left", 6);
+    configurarBotao("btn-right", 7);
+
+    configurarBotao("btn-b", 0);
+    configurarBotao("btn-y", 1);
+
+    configurarBotao("btn-select", 2);
+    configurarBotao("btn-start", 3);
+
+    configurarBotao("btn-a", 8);
+    configurarBotao("btn-x", 9);
+
+    configurarBotao("btn-l", 10);
+    configurarBotao("btn-r", 11);
+</script>
 
 </body>
 </html>
