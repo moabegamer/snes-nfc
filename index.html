@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width,
+                   initial-scale=1,
+                   maximum-scale=1,
+                   user-scalable=no">
+
+    <title>SNES Mini Game</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+            background: #111;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .console {
+            width: 100%;
+            max-width: 500px;
+            min-height: 100vh;
+            background: #dedede;
+            padding: 15px;
+        }
+
+        .titulo {
+            text-align: center;
+            color: #444;
+            margin: 5px 0 15px;
+        }
+
+        .titulo h1 {
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .titulo p {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .moldura {
+            background: #555;
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        #game {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: black;
+        }
+
+        .info {
+            text-align: center;
+            color: #555;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="console">
+
+    <div class="titulo">
+        <h1>SUPER MINI GAME</h1>
+        <p>Super Nintendo</p>
+    </div>
+
+    <div class="moldura">
+        <div id="game"></div>
+    </div>
+
+    <div class="info">
+        Toque no jogo para começar
+    </div>
+
+</div>
+
+<script>
+
+    EJS_player = "#game";
+
+    EJS_core = "snes";
+
+    EJS_gameName = "SNES Mini Game";
+
+    EJS_gameUrl = "jogos/jogo.sfc";
+
+    EJS_pathtodata =
+        "https://cdn.emulatorjs.org/stable/data/";
+
+    EJS_startOnLoaded = true;
+
+    EJS_language = "pt-BR";
+
+</script>
+
+<script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
+
+</body>
+</html>
