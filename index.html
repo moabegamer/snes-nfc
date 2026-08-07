@@ -63,7 +63,7 @@
 
         #game {
             width: 100%;
-            height: 560px;
+            aspect-ratio: 4 / 3;
             background: black;
         }
 
@@ -73,16 +73,143 @@
             margin-top: 15px;
             font-size: 13px;
         }
-           
-    display: block;
-    width: 110px;
-    height: 110px;
-    object-fit: contain;
-    margin: 0 auto 8px auto;
+        .controle-snes {
+    background: #e8e5e8;
+    padding: 12px 15px 20px;
+    border-radius: 0 0 18px 18px;
 }
-    </style>
-</head>
 
+.ombros {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.ombro {
+    width: 105px;
+    height: 30px;
+    border: none;
+    border-radius: 0 0 12px 12px;
+    background: #555;
+    color: #111;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.controles-principais {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 15px 30px;
+}
+
+.dpad {
+    width: 125px;
+    height: 125px;
+    position: relative;
+}
+
+.dpad button,
+.dpad .centro {
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    border: none;
+    background: #555;
+    color: #222;
+    font-size: 20px;
+}
+
+.dpad .up {
+    top: 0;
+    left: 42px;
+    border-radius: 7px 7px 0 0;
+}
+
+.dpad .down {
+    bottom: 0;
+    left: 42px;
+    border-radius: 0 0 7px 7px;
+}
+
+.dpad .left {
+    top: 42px;
+    left: 0;
+    border-radius: 7px 0 0 7px;
+}
+
+.dpad .right {
+    top: 42px;
+    right: 0;
+    border-radius: 0 7px 7px 0;
+}
+
+.dpad .centro {
+    top: 42px;
+    left: 42px;
+}
+
+.botoes-abxy {
+    width: 135px;
+    height: 135px;
+    position: relative;
+    background: #aaa;
+    border-radius: 50%;
+}
+
+.acao {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid #555;
+    font-weight: bold;
+    font-size: 17px;
+    color: #222;
+}
+
+.acao.x {
+    top: 5px;
+    left: 45px;
+    background: #4285f4;
+}
+
+.acao.y {
+    top: 45px;
+    left: 5px;
+    background: #4caf50;
+}
+
+.acao.a {
+    top: 45px;
+    right: 5px;
+    background: #f44336;
+}
+
+.acao.b {
+    bottom: 5px;
+    left: 45px;
+    background: #fbc02d;
+}
+
+.centrais {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+}
+
+.centrais button {
+    background: #ddd;
+    border: 1px solid #888;
+    border-radius: 15px;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #555;
+}
+        </style>
+        </head>
+           
 <body>
 
 <div class="console">
@@ -94,7 +221,38 @@
     <div class="moldura">
         <div id="game"></div>
     </div>
+<div class="controle-snes">
 
+    <div class="ombros">
+        <button id="btn-l" class="ombro">L</button>
+        <button id="btn-r" class="ombro">R</button>
+    </div>
+
+    <div class="controles-principais">
+
+        <div class="dpad">
+            <button id="btn-up" class="up">▲</button>
+            <button id="btn-left" class="left">◀</button>
+            <button id="btn-right" class="right">▶</button>
+            <button id="btn-down" class="down">▼</button>
+            <div class="centro"></div>
+        </div>
+
+        <div class="botoes-abxy">
+            <button id="btn-x" class="acao x">X</button>
+            <button id="btn-y" class="acao y">Y</button>
+            <button id="btn-a" class="acao a">A</button>
+            <button id="btn-b" class="acao b">B</button>
+        </div>
+
+    </div>
+
+    <div class="centrais">
+        <button id="btn-select">SELECT</button>
+        <button id="btn-start">START</button>
+    </div>
+
+</div>
     <div class="info">
         Toque no jogo para começar
     </div>
@@ -117,97 +275,8 @@
     EJS_startOnLoaded = true;
     EJS_language = "pt-BR";
 EJS_controlScheme = "snes";
-    EJS_VirtualGamepadSettings = [
-    {
-        type: "button",
-        text: "L",
-        id: "l",
-        location: "left",
-        top: 20,
-        left: 10,
-        fontSize: 18,
-        block: true,
-        input_value: 10
-    },
-    {
-        type: "button",
-        text: "R",
-        id: "r",
-        location: "right",
-        top: 20,
-        right: 10,
-        fontSize: 18,
-        block: true,
-        input_value: 11
-    },
-    {
-        type: "dpad",
-        location: "left",
-        left: "50%",
-        right: "50%",
-        joystickInput: false,
-        inputValues: [4, 5, 6, 7]
-    },
-    {
-        type: "button",
-        text: "Y",
-        id: "y",
-        location: "right",
-        left: 40,
-        bold: true,
-        input_value: 9
-    },
-    {
-        type: "button",
-        text: "X",
-        id: "x",
-        location: "right",
-        top: 40,
-        bold: true,
-        input_value: 1
-    },
-    {
-        type: "button",
-        text: "B",
-        id: "b",
-        location: "right",
-        left: 81,
-        top: 40,
-        bold: true,
-        input_value: 8
-    },
-    {
-        type: "button",
-        text: "A",
-        id: "a",
-        location: "right",
-        left: 40,
-        top: 80,
-        bold: true,
-        input_value: 0
-    },
-    {
-        type: "button",
-        text: "SELECT",
-        id: "select",
-        location: "center",
-        left: -55,
-        fontSize: 13,
-        block: true,
-        input_value: 2
-    },
-    {
-        type: "button",
-        text: "START",
-        id: "start",
-        location: "center",
-        left: 45,
-        fontSize: 13,
-        block: true,
-        input_value: 3
-    }
-];
-</script>
+
+   </script>
 
 <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
 
