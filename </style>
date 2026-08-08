@@ -207,7 +207,16 @@
     font-weight: bold;
     color: #555;
 }
+         /* Esconde apenas o controle virtual padrão do EmulatorJS */
+#game .ejs_virtualGamepad,
+#game .virtual-gamepad,
+#game .gamepad,
+#game [class*="gamepad"],
+#game [class*="virtualGamepad"] {
+    display: none !important;
+}
         </style>
+   
         </head>
            
 <body>
@@ -280,6 +289,32 @@ EJS_controlScheme = "snes";
    </script>
 
 <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
+    <script>
+    function esconderControlePadrao() {
+        const game = document.querySelector("#game");
+
+        if (!game) return;
+
+        const elementos = game.querySelectorAll(
+            '[class*="gamepad"], [class*="virtual"], [class*="touch"]'
+        );
+
+        elementos.forEach(function (el) {
+            const texto = (el.innerText || "").toLowerCase();
+
+            if (
+                texto.includes("select") ||
+                texto.includes("start") ||
+                texto.includes("rápido") ||
+                texto.includes("lento")
+            ) {
+                el.style.display = "none";
+            }
+        });
+    }
+
+    setInterval(esconderControlePadrao, 500);
+</script>
     <script>
     function enviarComando(indice, pressionado) {
         if (
